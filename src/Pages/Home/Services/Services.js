@@ -19,14 +19,14 @@ const Services = () => {
       text: "Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the",
     },
     {
-      id: 1,
+      id: 3,
       img: whitening,
       title: "Teeth Whitening",
       text: "Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the",
     },
   ];
   return (
-    <div className="py-20">
+    <div className="pt-20">
       <div className="text-center mb-10">
         <h5 className="text-primary">OUR SERVICES</h5>
         <h2 className="text-accent text-3xl">Services We Provide</h2>
