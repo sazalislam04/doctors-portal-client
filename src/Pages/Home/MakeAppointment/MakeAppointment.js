@@ -11,6 +11,7 @@ const MakeAppointment = () => {
         backgroundPosition: "center",
         backgroundSize: "cover",
         height: "100%",
+        width: "100%",
       }}
     >
       <div className="hero lg:mt-56 ">

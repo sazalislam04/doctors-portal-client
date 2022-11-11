@@ -3,7 +3,7 @@ import React from "react";
 const ClientReview = ({ data }) => {
   const { img, client_name, text, location } = data;
   return (
-    <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 text-gray-800">
+    <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 text-gray-800 shadow">
       <div className="flex justify-between p-4">
         <div className="flex space-x-4">
           <div>
@@ -18,7 +18,7 @@ const ClientReview = ({ data }) => {
             <span className="text-xs text-gray-600">{location}</span>
           </div>
         </div>
-        <div className="flex items-center space-x-2 text-yellow-500">
+        <div className="flex items-center space-x-2 text-secondary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
