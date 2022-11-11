@@ -1,5 +1,6 @@
 import React from "react";
 import banner from "../../../assets/images/chair.png";
+import PrimaryButton from "../../../Buttons/PrimaryButton/PrimaryButton";
 import "./Banner.css";
 
 const Banner = () => {
@@ -16,9 +17,7 @@ const Banner = () => {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <button className="btn btn-primary bg-graident-to-r from-primary to-secondary">
-            Get Started
-          </button>
+          <PrimaryButton>Get Started</PrimaryButton>
         </div>
       </div>
     </div>
