@@ -7,11 +7,7 @@ const Footer = () => {
     <footer className="footer lg:grid-cols-4 p-10">
       <div>
         <img className="w-14 h-14" src={whitening} alt="" />
-        <p>
-          The Doctors Portal
-          <br />
-          Providing reliable tech since 1992
-        </p>
+        <h2 className="text-2xl">The Doctors Portal</h2>
       </div>
       <div>
         <span className="footer-title">Services</span>
