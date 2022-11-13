@@ -1,9 +1,33 @@
 import { format } from "date-fns/esm";
 import React from "react";
+import toast from "react-hot-toast";
 
-const AppointmentModal = ({ treatment, selectedDate }) => {
+const AppointmentModal = ({ treatment, selectedDate, setTreatment }) => {
   const { name, slots } = treatment;
   const date = format(selectedDate, "PP");
+
+  const handleBooking = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const patientName = form.name.value;
+    const email = form.email.value;
+    const phone = form.phone.value;
+    const slot = form.slot.value;
+
+    const booking = {
+      appointmentDate: date,
+      treatment: name,
+      email,
+      patientName,
+      phone,
+      slot,
+    };
+    setTreatment(null);
+    toast.success("Appointment Booking Successfully", { duration: 1500 });
+
+    console.log(booking);
+  };
+
   return (
     <>
       <input
@@ -20,14 +44,17 @@ const AppointmentModal = ({ treatment, selectedDate }) => {
             ✕
           </label>
           <h3 className="text-lg font-bold">{name}</h3>
-          <div className="py-4 mt-6 flex flex-col gap-4">
+          <form
+            onSubmit={handleBooking}
+            className="py-4 mt-6 flex flex-col gap-4"
+          >
             <input
               type="text"
               disabled
               value={date}
               className="input input-bordered w-full"
             />
-            <select className="select select-bordered w-full">
+            <select name="slot" className="select select-bordered w-full">
               {slots.map((slot, index) => (
                 <option key={index} value={slot}>
                   {slot}
@@ -36,23 +63,26 @@ const AppointmentModal = ({ treatment, selectedDate }) => {
             </select>
             <input
               type="text"
-              placeholder="Type here"
+              name="name"
+              placeholder="Your Name"
+              className="input input-bordered w-full"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
               className="input input-bordered w-full"
             />
             <input
               type="text"
-              placeholder="Type here"
-              className="input input-bordered w-full"
-            />
-            <input
-              type="text"
-              placeholder="Type here"
+              name="phone"
+              placeholder="Your Phone"
               className="input input-bordered w-full"
             />
             <button className="btn btn-accent input-bordered w-full">
               Submit
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </>

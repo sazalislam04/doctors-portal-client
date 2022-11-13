@@ -30,7 +30,11 @@ const AvailableAppointment = ({ selectedDate }) => {
           />
         ))}
         {treatment && (
-          <AppointmentModal treatment={treatment} selectedDate={selectedDate} />
+          <AppointmentModal
+            treatment={treatment}
+            setTreatment={setTreatment}
+            selectedDate={selectedDate}
+          />
         )}
       </div>
     </div>
