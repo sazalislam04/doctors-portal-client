@@ -1,12 +1,8 @@
-import { format } from "date-fns";
-import React, { useState } from "react";
+import React from "react";
 import { DayPicker } from "react-day-picker";
-
 import bg from "../../../assets/images/bg.png";
-import banner from "../../../assets/images/chair.png";
-
-const AppointmentBanner = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+import chair from "../../../assets/images/chair.png";
+const AppointmentBanner = ({ setSelectedDate, selectedDate }) => {
   return (
     <section
       style={{
@@ -15,21 +11,19 @@ const AppointmentBanner = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="hero  py-20">
+      <div className="hero min-h-screen">
         <div className="hero-content flex-col gap-12 lg:flex-row-reverse">
           <img
-            src={banner}
-            className="w-full max-w-lg rounded-lg shadow-2xl"
+            src={chair}
+            className="w-full lg:w-1/2 rounded-lg shadow-2xl"
             alt=""
           />
-          <div className="w-full lg:w-1/2">
+          <div className="">
             <DayPicker
-              style={{ backgroundColor: "none" }}
               mode="single"
               selected={selectedDate}
               onSelect={setSelectedDate}
             />
-            <p>You have Selected date: {format(selectedDate, "PP")}</p>
           </div>
         </div>
       </div>
