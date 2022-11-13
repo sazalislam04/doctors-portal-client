@@ -1,7 +1,9 @@
+import { format } from "date-fns/esm";
 import React from "react";
 
-const AppointmentModal = ({ treatment }) => {
-  const { name } = treatment;
+const AppointmentModal = ({ treatment, selectedDate }) => {
+  const { name, slots } = treatment;
+  const date = format(selectedDate, "PP");
   return (
     <>
       <input
@@ -18,10 +20,39 @@ const AppointmentModal = ({ treatment }) => {
             ✕
           </label>
           <h3 className="text-lg font-bold">{name}</h3>
-          <p className="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
+          <div className="py-4 mt-6 flex flex-col gap-4">
+            <input
+              type="text"
+              disabled
+              value={date}
+              className="input input-bordered w-full"
+            />
+            <select className="select select-bordered w-full">
+              {slots.map((slot, index) => (
+                <option key={index} value={slot}>
+                  {slot}
+                </option>
+              ))}
+            </select>
+            <input
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full"
+            />
+            <input
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full"
+            />
+            <input
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full"
+            />
+            <button className="btn btn-accent input-bordered w-full">
+              Submit
+            </button>
+          </div>
         </div>
       </div>
     </>
