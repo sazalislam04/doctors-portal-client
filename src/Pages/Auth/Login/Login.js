@@ -11,7 +11,7 @@ const Login = () => {
     handleSubmit,
   } = useForm();
   const [loginError, setLoginError] = useState("");
-  const { userLogin } = useContext(AuthContext);
+  const { userLogin, googleLogin } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -25,6 +25,19 @@ const Login = () => {
         console.log(user);
         toast.success("User Login Successfully");
         navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoginError(error.message);
+      });
+  };
+  setLoginError("");
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("Login Success");
       })
       .catch((error) => {
         console.log(error);
@@ -92,7 +105,10 @@ const Login = () => {
         </div>
         <div className="divider">OR</div>
         <div>
-          <button className="btn btn-outline btn-accent w-full">
+          <button
+            onClick={handleGoogleLogin}
+            className="btn btn-outline btn-accent w-full"
+          >
             CONTINUE WITH GOOGLE
           </button>
         </div>
