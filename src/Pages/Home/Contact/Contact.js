@@ -33,16 +33,15 @@ const Contact = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-white">Password</span>
+                  <span className="label-text text-white">Your Message</span>
                 </label>
-                <input
-                  type="text"
-                  placeholder="password"
-                  className="input input-bordered"
-                />
+                <textarea
+                  className="textarea textarea-bordered"
+                  placeholder="Bio"
+                ></textarea>
               </div>
               <div className="form-control mt-6">
-                <PrimaryButton>Login</PrimaryButton>
+                <PrimaryButton>Submit</PrimaryButton>
               </div>
             </div>
           </div>
