@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import { ThemeContext } from "../../../contexts/ThemeProvider";
 
 const Navbar = () => {
   const { user, userLogOut } = useContext(AuthContext);
+
+  const { themes, toggleFunction } = useContext(ThemeContext);
+
   const handleLogOut = () => {
     userLogOut()
       .then(() => {
@@ -27,6 +32,7 @@ const Navbar = () => {
       <li>
         <Link to="/reviews">Reviews</Link>
       </li>
+
       {user?.uid ? (
         <>
           <li>
@@ -60,11 +66,20 @@ const Navbar = () => {
           <Link to="/login">Login</Link>
         </li>
       )}
+      <li>
+        <button
+          data-toggle-theme="dark,light"
+          data-act-class="ACTIVECLASS"
+          onClick={toggleFunction}
+        >
+          {themes ? <FaSun /> : <FaMoon />}
+        </button>
+      </li>
     </React.Fragment>
   );
 
   return (
-    <div className="navbar bg-base-100">
+    <div className={`navbar bg-base-100 `}>
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
