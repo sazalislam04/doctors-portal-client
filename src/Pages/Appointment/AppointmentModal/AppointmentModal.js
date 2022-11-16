@@ -1,10 +1,17 @@
 import { format } from "date-fns/esm";
-import React from "react";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
-const AppointmentModal = ({ treatment, selectedDate, setTreatment }) => {
+const AppointmentModal = ({
+  treatment,
+  selectedDate,
+  setTreatment,
+  refetch,
+}) => {
   const { name, slots } = treatment;
   const date = format(selectedDate, "PP");
+  const { user } = useContext(AuthContext);
 
   const handleBooking = (event) => {
     event.preventDefault();
@@ -22,10 +29,24 @@ const AppointmentModal = ({ treatment, selectedDate, setTreatment }) => {
       phone,
       slot,
     };
-    setTreatment(null);
-    toast.success("Appointment Booking Successfully", { duration: 1500 });
 
-    console.log(booking);
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success(data.message, { duration: 1500 });
+          setTreatment(null);
+          refetch();
+        } else {
+          toast.error(data.message);
+        }
+      });
   };
 
   return (
@@ -64,12 +85,16 @@ const AppointmentModal = ({ treatment, selectedDate, setTreatment }) => {
             <input
               type="text"
               name="name"
+              defaultValue={user?.displayName}
+              disabled
               placeholder="Your Name"
               className="input input-bordered w-full"
             />
             <input
               type="email"
               name="email"
+              defaultValue={user?.email}
+              disabled
               placeholder="Email Address"
               className="input input-bordered w-full"
             />

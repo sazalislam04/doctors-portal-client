@@ -1,20 +1,33 @@
+import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import Spinner from "../../Spinner/Spinner";
 import AppointmentModal from "../AppointmentModal/AppointmentModal";
 import AvailableAppointmentDetails from "./AvailableAppointmentDetails";
 
 const AvailableAppointment = ({ selectedDate }) => {
-  const [availableAppointment, setAvailableAppointment] = useState([]);
+  const date = format(selectedDate, "PP");
 
   const [treatment, setTreatment] = useState(null);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/appointment-options")
-      .then((res) => res.json())
-      .then((data) => {
-        setAvailableAppointment(data);
-      });
-  }, []);
+  const {
+    data: availableAppointment = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["availableAppointment", date],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/appointment-options?date=${date}`
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="py-20">
@@ -34,6 +47,7 @@ const AvailableAppointment = ({ selectedDate }) => {
             treatment={treatment}
             setTreatment={setTreatment}
             selectedDate={selectedDate}
+            refetch={refetch}
           />
         )}
       </div>

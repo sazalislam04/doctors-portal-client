@@ -11,7 +11,7 @@ const Signup = () => {
     handleSubmit,
   } = useForm();
 
-  const { createUser, googleLogin } = useContext(AuthContext);
+  const { createUser, googleLogin, updateUser } = useContext(AuthContext);
   const [signupError, setSignupError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,6 +23,13 @@ const Signup = () => {
         const user = result.user;
         console.log(user);
         toast.success("User Created Successfully");
+
+        const userInfo = {
+          displayName: data.name,
+        };
+        updateUser(userInfo)
+          .then(() => {})
+          .catch((error) => console.log(error));
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -48,7 +55,7 @@ const Signup = () => {
       <div className="w-full md:w-96 p-5 py-8 rounded shadow-xl">
         <h2 className="text-4xl text-center mb-5">Sign Up</h2>
 
-        <form onSubmit={handleSubmit(handleLogin)}>
+        <form onSubmit={() => handleSubmit(handleLogin)}>
           <label className="label">
             <span className="label-text-alt">Name</span>
           </label>
@@ -86,7 +93,7 @@ const Signup = () => {
                 message: "Password should be at least 6 characters or longer",
               },
               pattern: {
-                value: /(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
+                value: /(?=.*[A-Z])(?=.*[0-9])/,
                 message:
                   "Password contains should be UpperCase, Number and special characters",
               },

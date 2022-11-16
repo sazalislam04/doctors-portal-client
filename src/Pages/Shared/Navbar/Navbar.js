@@ -33,7 +33,7 @@ const Navbar = () => {
         <Link to="/reviews">Reviews</Link>
       </li>
 
-      {user?.uid ? (
+      {user?.email ? (
         <>
           <li>
             <Link to="/dashboard">Dashboard</Link>
