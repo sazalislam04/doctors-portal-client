@@ -55,7 +55,7 @@ const Signup = () => {
       <div className="w-full md:w-96 p-5 py-8 rounded shadow-xl">
         <h2 className="text-4xl text-center mb-5">Sign Up</h2>
 
-        <form onSubmit={() => handleSubmit(handleLogin)}>
+        <form onSubmit={handleSubmit(handleLogin)}>
           <label className="label">
             <span className="label-text-alt">Name</span>
           </label>

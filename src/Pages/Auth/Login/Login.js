@@ -21,8 +21,6 @@ const Login = () => {
     setLoginError("");
     userLogin(email, password)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
         toast.success("User Login Successfully");
         navigate(from, { replace: true });
       })
@@ -31,7 +29,7 @@ const Login = () => {
         setLoginError(error.message);
       });
   };
-  setLoginError("");
+
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
@@ -50,7 +48,7 @@ const Login = () => {
       <div className="w-full md:w-96 p-5 py-8 rounded shadow-xl">
         <h2 className="text-4xl text-center mb-5">Login</h2>
 
-        <form onSubmit={() => handleSubmit(handleLogin)}>
+        <form onSubmit={handleSubmit(handleLogin)}>
           <label className="label">
             <span className="label-text-alt">Email</span>
           </label>
