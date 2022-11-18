@@ -39,8 +39,8 @@ const AppointmentModal = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.success) {
-          toast.success(data.message, { duration: 1500 });
+        if (data.acknowledged) {
+          toast.success("Appointoment booking success");
           setTreatment(null);
           refetch();
         } else {
