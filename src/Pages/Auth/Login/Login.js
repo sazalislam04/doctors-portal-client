@@ -13,7 +13,7 @@ const Login = () => {
   } = useForm();
   const [loginError, setLoginError] = useState("");
   const [loginUserEmail, setLoginUserEmail] = useState("");
-  const { userLogin, googleLogin, user } = useContext(AuthContext);
+  const { userLogin, googleLogin } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -43,6 +43,7 @@ const Login = () => {
         const user = result.user;
         toast.success("Login Success");
         setLoginUserEmail(user?.email);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);

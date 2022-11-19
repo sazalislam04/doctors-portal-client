@@ -52,6 +52,7 @@ const Signup = () => {
         const user = result.user;
         console.log(user);
         toast.success("Login Success");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
