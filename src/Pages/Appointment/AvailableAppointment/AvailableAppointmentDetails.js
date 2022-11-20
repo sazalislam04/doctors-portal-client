@@ -1,7 +1,7 @@
 import React from "react";
 
 const AvailableAppointmentDetails = ({ appointment, setTreatment }) => {
-  const { name, slots } = appointment;
+  const { name, slots, price } = appointment;
   return (
     <div className="card bg-base-100 w-72 lg:w-full mx-auto shadow-xl mt-20">
       <div className="card-body text-center">
@@ -10,6 +10,7 @@ const AvailableAppointmentDetails = ({ appointment, setTreatment }) => {
         <p>
           {slots.length} {slots.length > 1 ? "SPACES" : "SPACE"} AVAILABLE
         </p>
+        <p className="font-bold">Price: ${price}</p>
         <div className="card-actions justify-center">
           <label
             onClick={() => setTreatment(appointment)}
