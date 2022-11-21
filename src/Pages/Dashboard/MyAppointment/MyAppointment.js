@@ -7,7 +7,7 @@ import Spinner from "../../Spinner/Spinner";
 const MyAppointment = () => {
   const { user } = useContext(AuthContext);
   const [date, setDate] = useState(new Date());
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://doctors-portal-server-gold.vercel.app/bookings?email=${user?.email}`;
 
   useEffect(() => {
     const timer = setInterval(() => {

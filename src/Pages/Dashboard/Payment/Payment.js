@@ -9,11 +9,6 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 const Payment = () => {
   const { _id, appointmentDate, treatment, patientName, slot, price, email } =
     useLoaderData();
-  // const navigation = useNavigation();
-
-  // if (navigation.state === "loading") {
-  //   return <Spinner />;
-  // }
 
   return (
     <div className="p-6">
